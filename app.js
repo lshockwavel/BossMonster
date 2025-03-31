@@ -1,0 +1,116 @@
+let gold = 0;
+
+const heroes = [
+{
+    name: "Dane",
+    type: "warrior",
+    attack: 10,
+    health: 100,
+  },
+  {
+    name: "Igor",
+    type: "mage",
+    attack: 5,
+    health: 100
+  }
+]
+
+const jerk = {
+    name: "Jerk",
+    attack: 5,
+    health: 100,
+    maxHealth: 100,
+    level: 1,
+}
+
+function attackEnemy() {
+    // Getting the total damage done to the enemy
+    let totalDamage = 0;
+    heroes.forEach(hero => {
+        totalDamage += hero.attack;
+    });
+
+    // Decreasing the enemy's health by the total damage done
+    jerk.health -= totalDamage;
+
+    if(jerk.health <= 0) {
+        console.log("The enemy has been defeated!");
+        jerk.health = 0; // Set health to 0 to avoid negative health
+        evenMoreOfAJerk();
+    }
+
+    console.log(`The enemy's health is now: ${jerk.health}`);
+
+    drawJerkHealthBar(); // Call the function to draw the health bar
+}
+
+//Level up the enemy/boss
+function evenMoreOfAJerk() {
+    jerk.level += 1; // Increase the level of the enemy
+
+    // Showing the level up message & stats
+    console.log(`The enemy has leveled up to level ${jerk.level}!`);
+    // const jerkElem = document.getElementById("jerk");
+
+    // const levelText = jerkElem.querySelector(".level");
+    // levelText.innerText = `Level: ${jerk.level}`; // Update the level text
+
+    jerk.attack += Math.floor(Math.random() * 2); // Increase the attack of the enemy between 0 and 1.
+
+    jerk.maxHealth += Math.ceil(Math.random() * 10); // Increase the max health of the enemy between 1 and 10.
+
+    jerk.health = jerk.maxHealth; // Set the health to the max health
+    
+    drawJerkHealthBar(); // Call the function to draw the health bar
+}
+
+function drawJerkHealthBar() {
+    const healthBar = document.getElementById("health-bar");
+    const healthPercentage = (jerk.health / jerk.maxHealth) * 100; // Assuming max health is 100
+    healthBar.style.width = `${healthPercentage}%`;
+
+    // Getting the number value updated
+    const healthText = document.getElementById("Jerk-Health");
+    healthText.innerText = `${jerk.health} HP`;
+    // healthBar.innerText = `${health} HP`;
+}
+
+function attackHeroes() {
+    heroes.forEach(hero => {
+        // Decreasing the hero's health by the enemy's attack
+
+        //Temp variable damage
+        // So it will be random between 1 (with the Plus 1 at the end) and jerk.attack * 0-2
+        let damage = Math.floor(jerk.attack * (Math.random() * 2)) + 1; // Random damage between 1 and jerk.attack * 2
+        console.log(`The enemy attacks ${hero.name} for ${damage} damage!`);
+        hero.health -= damage;
+
+        if(hero.health <= 0) {
+            console.log(`${hero.name} has been defeated!`);
+            hero.health = 0; // Set health to 0 to avoid negative health
+        }
+
+        console.log(`${hero.name}'s health is now: ${hero.health}`);
+    })
+
+    // Call the function to draw the health bar for each hero
+    drawHeroes();
+}
+
+function drawHeroes() {
+    heroes.forEach(hero => {
+        // Getting the number value updated
+        const heroElem = document.getElementById(hero.name);
+
+        const healthText = heroElem.querySelector(".health");
+
+        // @ts-ignore
+        healthText.innerText = `${hero.health}`;
+    })
+}
+
+setInterval(attackHeroes, 5000); // Call the attackHeroes function every 5 seconds
+
+/* Supplies
+Sam?
+Potion*/

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+    <title>It's a work in Progress!!!!</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <section class="row">
+                <!-- First Hero -->
+                <div class="col-3">
+                    <div id="Dane">
+                        <div>
+                            <b>Dane</b>
+                            <img src="https://opengameart.org/sites/default/files/spellun-sprite_0.png" alt="Knight" class="img-fluid fixed-height">
+                        </div>
+                        <div>
+                            <span>HP: <span class="health">100</span></span>
+                        </div>
+                        <div>
+                            <span>Gold: <span class="Money">0</span></span>
+                        </div>
+                        <div>
+                            <span>Level: <span class="level">1</span> </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div id="Igor">
+                        <div>
+                            <b>Igor</b>
+                            <img src="https://opengameart.org/sites/default/files/wizard.png" alt="FallGuy" class="img-fluid fixed-height">
+                        </div>
+                        <div>
+                            <span>HP: <span class="health">100</span></span>
+                        </div>
+                        <!-- Wizards don't get paid! -->
+                        <!-- <div>
+                            <span>Gold: <p class="Money"></p> </span>
+                        </div> -->
+                        <div>
+                            <span>Level: <span class="level"> 1</span> </span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <section class="row">
+                <div class="col-6">
+                    <div id="jerk">
+                        <div id="health-bar" class="progress" role="progressbar" valuenow="100" valuemin="0" valuemax="100">
+                            <div class="progress-bar" style="width: 100%"></div>
+                          </div>
+                        <p>NeyPets <span id="Jerk-Health"> 100 HP</span></p>
+                        <img onclick="attackEnemy()" role="button" src="https://opengameart.org/sites/default/files/angry%20small.png" alt="90's cartoon jerk face creature" class="img-fluid fixed-height">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer>
+        <!-- Shop? -->
+    </footer>
+</body>
+</html>
