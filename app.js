@@ -21,6 +21,7 @@ const jerk = {
     health: 100,
     maxHealth: 100,
     level: 1,
+    deathCount: 0,
 }
 
 function attackEnemy() {
@@ -50,15 +51,22 @@ function evenMoreOfAJerk() {
 
     // Showing the level up message & stats
     console.log(`The enemy has leveled up to level ${jerk.level}!`);
-    // const jerkElem = document.getElementById("jerk");
+    const jerkElem = document.getElementById("jerk");
 
-    // const levelText = jerkElem.querySelector(".level");
-    // levelText.innerText = `Level: ${jerk.level}`; // Update the level text
+    const levelText = jerkElem.querySelector(".level");
+    levelText.innerText = jerk.level; // Update the level text
 
+    jerk.deathCount++;
+
+    //Unvaling the the true horror you have unleashed
+    const orphanElem = document.getElementById("jerkCount");
+    orphanElem.classList.remove("d-none"); // Remove the hidden class to show the element
+    const deathText = orphanElem.querySelector(".deathCount");
+    deathText.innerText = jerk.deathCount; // Update the death count text
+
+    //Leveling up the jerk
     jerk.attack += Math.floor(Math.random() * 2); // Increase the attack of the enemy between 0 and 1.
-
     jerk.maxHealth += Math.ceil(Math.random() * 10); // Increase the max health of the enemy between 1 and 10.
-
     jerk.health = jerk.maxHealth; // Set the health to the max health
     
     drawJerkHealthBar(); // Call the function to draw the health bar
@@ -80,8 +88,8 @@ function attackHeroes() {
         // Decreasing the hero's health by the enemy's attack
 
         //Temp variable damage
-        // So it will be random between 1 (with the Plus 1 at the end) and jerk.attack * 0-2
-        let damage = Math.floor(jerk.attack * (Math.random() * 2)) + 1; // Random damage between 1 and jerk.attack * 2
+        // So it will be random between 1-2
+        let damage = Math.ceil(jerk.attack * (Math.random() * 2)); // Random damage between 1 and jerk.attack * 2
         console.log(`The enemy attacks ${hero.name} for ${damage} damage!`);
         hero.health -= damage;
 
@@ -107,6 +115,12 @@ function drawHeroes() {
         // @ts-ignore
         healthText.innerText = `${hero.health}`;
     })
+}
+
+function awardHero() {
+    gold += math.ceil(Math.random() * 100); // Random gold between 1 and 100
+    const goldText = document.getElementById("gold");
+    goldText.innerText = `${gold} Gold`; // Update the gold text
 }
 
 setInterval(attackHeroes, 5000); // Call the attackHeroes function every 5 seconds
