@@ -49,6 +49,8 @@ function attackEnemy() {
 function evenMoreOfAJerk() {
     jerk.level += 1; // Increase the level of the enemy
 
+    awardHero(); // Call the function to award the hero
+
     // Showing the level up message & stats
     console.log(`The enemy has leveled up to level ${jerk.level}!`);
     const jerkElem = document.getElementById("jerk");
@@ -118,9 +120,27 @@ function drawHeroes() {
 }
 
 function awardHero() {
-    gold += math.ceil(Math.random() * 100); // Random gold between 1 and 100
-    const goldText = document.getElementById("gold");
-    goldText.innerText = `${gold} Gold`; // Update the gold text
+    gold += Math.ceil(Math.random() * 100); // Random gold between 1 and 100
+    drawGold();
+}
+
+function drawGold() {
+    const goldText = document.getElementById("gold"); // Assuming you want to show the gold for the first hero
+    goldText.innerText = gold; // Update the gold text
+}
+
+function buyHealthPotion(name) {
+    const hero = heroes.find(hero => hero.name === name); // Find the hero by name
+
+    if(gold >= 10) { // Check if the player has enough gold
+        hero.health += 10; // Increase the hero's health by 10
+        gold -= 10; // Decrease the gold by 10
+        drawGold(); // Call the function to draw the gold
+        console.log(`${hero.name} has bought a health potion!`);
+    } 
+    else {
+        console.log("Not enough gold to buy a health potion!");
+    }
 }
 
 setInterval(attackHeroes, 5000); // Call the attackHeroes function every 5 seconds
